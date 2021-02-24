@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2020",
+        "noImplicitAny": false,
+        "inlineSourceMap": true,
+        "outDir": "dist",
+        "strictNullChecks": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "exclude": [
+        "dist"
+    ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@vladislav805/sights-telegram-bot",
+  "private": true,
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "ts-node .",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "Vladislav Veluga <vlad@velu.ga> (https://velu.ga/)",
+  "license": "ISC",
+  "dependencies": {
+    "@apidog/multibot-sdk-ts": "0.2.0",
+    "dotenv": "8.2.0",
+    "node-fetch": "2.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "14.14.31",
+    "ts-node": "9.1.1",
+    "typescript": "4.1.5"
+  }
+}
