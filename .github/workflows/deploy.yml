@@ -1,0 +1,34 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+      # Install packages dependencies
+      - run: npm ci
+      # Build
+      - run: npm run build
+      # If ok, connect to server and update
+      - uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.ssh_host }}
+          username: vlad805
+          key: ${{ secrets.ssh_key }}
+          script_stop: true
+          script: |
+            export PATH=$PATH:/usr/bin/:/home/vlad805/.nvm/versions/node/v12.19.0/bin/
+            cd /home/vlad805/projects/@sights/telegram-bot/
+            /usr/bin/git reset --hard
+            /usr/bin/git fetch origin
+            /usr/bin/git rebase origin/master
+            /home/vlad805/.nvm/versions/node/v14.15.2/bin/npm ci
+            /home/vlad805/.nvm/versions/node/v14.15.2/bin/npm run build
+            /home/vlad805/.nvm/versions/node/v12.19.0/bin/pm2 restart sights-telegram -s
+            exit
